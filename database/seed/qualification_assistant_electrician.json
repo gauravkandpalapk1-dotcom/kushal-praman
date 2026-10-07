@@ -1,0 +1,46 @@
+{
+  "_provenance": "QP/NOS identifiers from NQR listing for QG-03-IS-03883-2025-V2-IISSSC [ref 4]. PC10 text is verbatim from the NQR Q-File as quoted in the team deck speaker notes (original spelling kept). Other PCs are NOT seeded because their exact wording is not in our sources; add them from the Q-File via Admin > Qualifications. Rubric descriptors are TEAM-DRAFTED and must be validated with SSC-certified assessors.",
+  "qualification": {
+    "title": "Assistant Electrician",
+    "nqr_code": "QG-03-IS-03883-2025-V2-IISSSC",
+    "nsqf_level": 3,
+    "sector_skill_council": "IISSSC (Indian Iron & Steel Sector Skill Council)",
+    "version": "2.0",
+    "assessment_mode": "Offline",
+    "source_ref": 4
+  },
+  "nos": [
+    { "code": "ISC/N0008", "title": "Use basic health and safety practices at the work place", "version": "2.0", "is_mandatory": true, "pcs": [] },
+    { "code": "ISC/N0009", "title": "Work effectively with others", "version": "2.0", "is_mandatory": true, "pcs": [] },
+    { "code": "ISC/N1001", "title": "Prepare for machines/electrical panels assembling activities", "version": "5.0", "is_mandatory": true, "pcs": [] },
+    {
+      "code": "ISC/N1002",
+      "title": "Assemble the electrical components",
+      "version": "5.0",
+      "is_mandatory": true,
+      "pcs": [
+        {
+          "code": "PC10",
+          "text": "use wires strippers, crippling tool and other insulated tools for making the electrical connections of machine/electrical panels",
+          "is_verbatim": true,
+          "source_note": "Verbatim from NQR Q-File, Assistant Electrician (original spelling retained) [4]",
+          "max_marks": 4,
+          "keywords": ["wire stripper", "stripping", "strip", "insulation", "crimp", "crimping", "crimping tool", "lug", "ferrule", "insulated tool", "screwdriver", "connection", "terminal", "panel", "conductor", "tar", "chheel", "cable", "taar"],
+          "rubric": {
+            "status": "draft",
+            "author_note": "Team-drafted PC-level analytic rubric (Jonsson & Svingby 2007 [8]). To be validated with SSC-certified assessors before pilot scoring.",
+            "levels": [
+              { "score": 0, "descriptor": "Not demonstrated. No observable use of stripping, crimping or insulated tools to make a connection in the evidence.", "exemplar": null },
+              { "score": 1, "descriptor": "Attempted, unsafe or incorrect. Wrong or non-insulated tool used, conductor strands visibly damaged, or the connection is not completed without intervention.", "exemplar": null },
+              { "score": 2, "descriptor": "Partially correct. Appropriate tools chosen, but strip length or crimp is inconsistent, strands are loose or nicked, or safe handling lapses once.", "exemplar": null },
+              { "score": 3, "descriptor": "Correct and safe. Appropriate insulated tools used safely; insulation stripped to suitable length; lug/ferrule crimped and terminated securely. Minor inefficiency or one small rework.", "exemplar": null },
+              { "score": 4, "descriptor": "Correct, safe and fluent throughout. Clean strip with no strand damage, properly crimped and seated lugs, secure terminations, insulated grip maintained, no rework.", "exemplar": null }
+            ]
+          }
+        }
+      ]
+    },
+    { "code": "ISC/N1003", "title": "Perform post-assembly activities", "version": "5.0", "is_mandatory": true, "pcs": [] },
+    { "code": "DGT/VSQ/N0101", "title": "Employability Skills", "version": "1.0", "is_mandatory": true, "pcs": [] }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "_label": "DEMO ANALYSIS: deterministic seeded output used ONLY for the synthetic demo media storage/demo/practical_demo.mp4 (matched by SHA-256 computed at startup). Not a live model prediction.",
+  "asset": "storage/demo/practical_demo.mp4",
+  "language": "hi",
+  "transcript": [
+    { "start_s": 3.0,  "end_s": 9.0,  "text": "नमस्ते, मैं राज कुमार। पहले मैं सप्लाई आइसोलेट करके चेक कर रहा हूँ।", "translation_en": "Hello, I am Raj Kumar. First I am isolating the supply and checking it." },
+    { "start_s": 18.0, "end_s": 25.0, "text": "दस्ताने और सेफ्टी शूज़ पहन लिए हैं।", "translation_en": "I have put on gloves and safety shoes." },
+    { "start_s": 44.0, "end_s": 50.5, "text": "अब इंसुलेटेड वायर स्ट्रिपर से तार का इंसुलेशन लगभग आठ मिलीमीटर उतार रहा हूँ।", "translation_en": "Now I am stripping about eight millimetres of insulation from the wire with the insulated wire stripper." },
+    { "start_s": 51.0, "end_s": 58.0, "text": "तार के स्ट्रैंड कटे नहीं हैं, अब लग लगाकर क्रिम्पिंग टूल से क्रिम्प कर रहा हूँ।", "translation_en": "The strands are not cut. Now I fit the lug and crimp it with the crimping tool." },
+    { "start_s": 59.0, "end_s": 66.5, "text": "इंसुलेटेड पेचकस से पैनल के टर्मिनल पर कस रहा हूँ।", "translation_en": "Tightening it onto the panel terminal with the insulated screwdriver." },
+    { "start_s": 95.0, "end_s": 101.0, "text": "केबल को ट्रंकिंग में रूट कर रहा हूँ।", "translation_en": "Routing the cable in the trunking." },
+    { "start_s": 240.0, "end_s": 246.0, "text": "एमसीबी को डिन रेल पर माउंट कर रहा हूँ।", "translation_en": "Mounting the MCB on the DIN rail." },
+    { "start_s": 380.0, "end_s": 387.0, "text": "मल्टीमीटर से कंटिन्युटी चेक कर रहा हूँ।", "translation_en": "Checking continuity with the multimeter." }
+  ],
+  "vision_tags": [
+    { "start_s": 0,   "end_s": 42,  "tags": ["gloves", "safety shoes", "isolator switch"] },
+    { "start_s": 42,  "end_s": 68,  "tags": ["insulated wire stripper", "crimping tool", "ring lug", "insulated screwdriver", "terminal block", "hands at panel"] },
+    { "start_s": 68,  "end_s": 210, "tags": ["cable trunking", "cable ties"] },
+    { "start_s": 210, "end_s": 360, "tags": ["DIN rail", "MCB", "contactor"] },
+    { "start_s": 360, "end_s": 510, "tags": ["multimeter", "test probes"] },
+    { "start_s": 510, "end_s": 600, "tags": ["tool box", "cleared work area"] }
+  ],
+  "segment_descriptions": [
+    { "start_s": 42, "end_s": 68, "description": "Candidate strips conductor insulation with an insulated wire stripper, crimps a ring lug with a crimping tool, and terminates the conductor at a panel terminal using an insulated screwdriver." }
+  ],
+  "summary": "10-minute practical recording of panel assembly work: preparation and isolation, a conductor termination sequence (00:42–01:08), cable routing, component mounting on DIN rail, continuity testing and housekeeping.",
+  "mappings": [
+    {
+      "nos_code": "ISC/N1002",
+      "pc_code": "PC10",
+      "start_s": 42,
+      "end_s": 68,
+      "signal": "supports",
+      "confidence": 0.91,
+      "rationale": "Segment shows the tools named in PC10 (insulated wire stripper, crimping tool, insulated screwdriver) being used to make an electrical connection at a panel terminal. The time-aligned speech describes the same steps. Whether the work meets the standard is for the assessor to judge against the rubric."
+    }
+  ]
+}

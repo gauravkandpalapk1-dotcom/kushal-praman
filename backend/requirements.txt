@@ -1,0 +1,16 @@
+fastapi>=0.115
+uvicorn[standard]>=0.30
+sqlalchemy>=2.0.30
+alembic>=1.13
+pydantic>=2.7
+pydantic-settings>=2.3
+PyJWT>=2.8
+bcrypt>=4.1
+python-multipart>=0.0.9
+reportlab>=4.2
+numpy>=1.26
+# Optional AI providers (NOT required; imported lazily when configured):
+#   faster-whisper      -> ASR_PROVIDER=faster_whisper
+#   anthropic           -> ANTHROPIC_API_KEY
+#   google-genai        -> GEMINI_API_KEY
+#   pytesseract         -> requires the Tesseract binary on PATH

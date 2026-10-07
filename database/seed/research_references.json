@@ -1,0 +1,112 @@
+[
+  {
+    "number": 1,
+    "short": "NCVET (2023)",
+    "citation": "National Council for Vocational Education and Training (2023). Guidelines for Recognition of Prior Learning (RPL).",
+    "url": "https://www.ncvet.gov.in/guidelines",
+    "doi": null,
+    "category": "policy",
+    "what_it_says": "Sets the national RPL process. As summarised in our deck: video and geotagged evidence of assessment, and PC-wise reporting of results. Also names the access burden on daily-wage workers who lose income to attend assessments.",
+    "design_decision": "Build ON the existing RPL evidence workflow instead of replacing it. Capture the timestamp, geotag and hash the guidelines already expect, and report at PC level. Add no new evidence burden for candidates.",
+    "where_in_product": ["Candidate Evidence Capture (timestamp · geotag · hash)", "PC-wise Assessment Record", "Offline capture near the worksite"]
+  },
+  {
+    "number": 2,
+    "short": "ILO (2026)",
+    "citation": "International Labour Organization (2026). From Experience to Opportunity: Recognition of Prior Learning. doi:10.54394/00034676",
+    "url": "https://doi.org/10.54394/00034676",
+    "doi": "10.54394/00034676",
+    "category": "policy",
+    "what_it_says": "As cited in our deck: inconsistent application of standards weakens trust in RPL outcomes, and there are too few qualified assessors.",
+    "design_decision": "Treat consistency as something to measure, not assume: PC-level rubrics, blind double-scoring, and weighted Cohen's kappa. Reduce assessor time per candidate by surfacing the relevant segment instead of a full replay.",
+    "where_in_product": ["Inter-assessor agreement (weighted κ)", "Impact metric: minutes per candidate", "Evidence Workspace segment surfacing"]
+  },
+  {
+    "number": 3,
+    "short": "DigiLocker NAD",
+    "citation": "DigiLocker National Academic Depository: NCVET skill certificates. nad.digilocker.gov.in/skill",
+    "url": "https://nad.digilocker.gov.in/skill",
+    "doi": null,
+    "category": "policy",
+    "what_it_says": "NCVET-recognised skill certificates are already issued digitally through DigiLocker.",
+    "design_decision": "Our output is an assessment record handed to the Awarding Body, which certifies through the existing pathway. DigiLocker is shown as EXISTING ECOSYSTEM, NOT INTEGRATED IN MVP. We do not certify.",
+    "where_in_product": ["Assessment Record → Awarding Body handoff", "Traceability screen output chain"]
+  },
+  {
+    "number": 4,
+    "short": "NQR Q-File (2025)",
+    "citation": "National Qualifications Register (2025). Q-File: Assistant Electrician, QG-03-IS-03883-2025-V2-IISSSC.",
+    "url": "https://www.nqr.gov.in/qualification/file/QFile_Assistant%20Electrician.pdf",
+    "doi": null,
+    "category": "policy",
+    "what_it_says": "Defines the official Qualification Pack → National Occupational Standards → Performance Criteria structure. The official assessment mode for this QP is Offline.",
+    "design_decision": "Use the official QP → NOS → PC hierarchy as the data model. No home-made skill ontology. PC10 of ISC/N1002 is stored verbatim. Offline-first operation matches the QP's own assessment mode.",
+    "where_in_product": ["Qualification data model", "Evidence Mapper chain", "Admin qualification management"]
+  },
+  {
+    "number": 5,
+    "short": "Buçinca et al. (2021)",
+    "citation": "Buçinca, Z., Malaya, M. B., & Gajos, K. Z. (2021). To Trust or to Think: Cognitive Forcing Functions Can Reduce Overreliance on AI in AI-assisted Decision-making. Proc. ACM Hum.-Comput. Interact. 5(CSCW1). doi:10.1145/3449287",
+    "url": "https://doi.org/10.1145/3449287",
+    "doi": "10.1145/3449287",
+    "category": "research",
+    "what_it_says": "Simple explainable-AI displays did not prevent people from over-relying on incorrect AI suggestions. Cognitive forcing functions, such as asking people to decide before seeing the AI, reduced over-reliance, though participants rated them as less pleasant to use.",
+    "design_decision": "ASSESSOR-FIRST. The assessor locks an initial score before any interpretive AI output (confidence, signal, explanation) is revealed. The server enforces this (HTTP 409), not just the UI. We also track the post-reveal score-change rate to watch for over-reliance, and we accept some friction as the cost of independent judgement.",
+    "where_in_product": ["Assessor Assessment screen (lock → reveal → final)", "API: /assessments/{id}/ai-support returns 409 before the initial score", "Analytics: post-reveal change rate"]
+  },
+  {
+    "number": 6,
+    "short": "Funke et al. (2019)",
+    "citation": "Funke, I., Mees, S. T., Weitz, J., & Speidel, S. (2019). Video-based surgical skill assessment using 3D convolutional neural networks. International Journal of Computer Assisted Radiology and Surgery, 14(7).",
+    "url": "https://arxiv.org/abs/1903.02306",
+    "doi": null,
+    "category": "research",
+    "what_it_says": "Deep video models can classify skill levels well in a narrow, structured, well-instrumented domain (benchmark surgical training tasks).",
+    "design_decision": "Narrow AI scope. Strong results in one controlled domain do not show that generic computer vision can judge competency across occupations. Our vision service only finds, tags, segments and flags evidence. It never scores.",
+    "where_in_product": ["AI role statement on every AI panel", "Guardrail blocking competency language", "AI architecture (vision = tagging only)"]
+  },
+  {
+    "number": 7,
+    "short": "Wang et al. (2022)",
+    "citation": "Wang, S., Yang, D., Zhai, P., & Zhang, L. (2022). A Survey of Video-based Action Quality Assessment. arXiv:2204.09271.",
+    "url": "https://arxiv.org/abs/2204.09271",
+    "doi": null,
+    "category": "research",
+    "what_it_says": "Action quality assessment research is concentrated in specific domains (e.g. sports, medical skills) and works at the level of actions and segments within video.",
+    "design_decision": "Segment-level evidence anchoring. A 10-minute recording becomes time-coded segments, and the mapper links a specific segment (e.g. 00:42–01:08) to a specific PC rather than judging the whole video.",
+    "where_in_product": ["Video segmentation (ffmpeg scene detection)", "Evidence Workspace timeline", "Mapping anchored to a segment"]
+  },
+  {
+    "number": 8,
+    "short": "Jonsson & Svingby (2007)",
+    "citation": "Jonsson, A., & Svingby, G. (2007). The use of scoring rubrics: Reliability, validity and educational consequences. Educational Research Review, 2(2), 130–144.",
+    "url": "https://doi.org/10.1016/j.edurev.2007.05.002",
+    "doi": "10.1016/j.edurev.2007.05.002",
+    "category": "research",
+    "what_it_says": "Scoring reliability improves with analytic, task-specific rubrics, especially when supported by exemplars and rater training. A rubric alone does not guarantee valid assessment.",
+    "design_decision": "Every PC carries a versioned, PC-level analytic rubric (0–4) shown beside the evidence at scoring time. Rubric levels have an exemplar slot, and rubrics stay 'draft' until validated with certified assessors.",
+    "where_in_product": ["Rubric model (versioned, draft/validated)", "Assessor Assessment screen", "Admin rubric editor"]
+  },
+  {
+    "number": 9,
+    "short": "Bhogale et al. (2023)",
+    "citation": "Bhogale, K., et al. (2023). Vistaar: Diverse Benchmarks and Training Sets for Indian Language ASR. Proc. Interspeech 2023. doi:10.21437/Interspeech.2023-2589",
+    "url": "https://doi.org/10.21437/Interspeech.2023-2589",
+    "doi": "10.21437/Interspeech.2023-2589",
+    "category": "research",
+    "what_it_says": "Provides benchmarks across many Indian languages and openly released ASR models (IndicWhisper) that perform strongly on them.",
+    "design_decision": "Speech-to-text is a swappable adapter (IndicWhisper / faster-whisper) that returns timestamped segments with a language tag, so a candidate's spoken explanation in Hindi or another Indian language can be aligned to the video timeline.",
+    "where_in_product": ["ai/speech adapter", "Time-aligned transcript in the Evidence Workspace", "System status: ASR provider"]
+  },
+  {
+    "number": 10,
+    "short": "Zheng et al. (2023)",
+    "citation": "Zheng, L., et al. (2023). Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena. NeurIPS 2023 Datasets and Benchmarks.",
+    "url": "https://arxiv.org/abs/2306.05685",
+    "doi": null,
+    "category": "research",
+    "what_it_says": "Strong LLM judges can agree with human preferences at high rates, but show systematic biases (position, verbosity, self-enhancement) and limited reasoning on some tasks.",
+    "design_decision": "The LLM is never the judge. It produces structured, neutral descriptions and summaries bound to the PC text. A guardrail rejects any competency verdict or score, and the human assessor makes the final decision.",
+    "where_in_product": ["ai/llm adapter (structured JSON output)", "ai/guardrails competency-language filter", "Final decision always by the assessor"]
+  }
+]

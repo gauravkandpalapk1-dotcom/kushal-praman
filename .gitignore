@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+database/*.db
+database/*.db-wal
+database/*.db-shm
+storage/uploads/
+storage/tmp/
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+frontend/next-env.d.ts
+# Local tooling
+.claude/

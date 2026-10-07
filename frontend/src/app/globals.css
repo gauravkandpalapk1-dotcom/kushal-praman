@@ -1,0 +1,156 @@
+@import "tailwindcss";
+
+/* Design tokens: deep red panels with white text, warm cream page, amber accent.
+   The scale keeps its historical name (navy-*) so components didn't need renaming; the values are red. */
+@theme {
+  --color-navy-950: #5c0b0b;
+  --color-navy-900: #7f1414;
+  --color-navy-850: #8c1818;
+  --color-navy-800: #9e1c1c;
+  --color-navy-700: #b32424;
+  --color-navy-600: #c43a3a;
+  --color-navy-500: #b85c5c;
+  --color-navy-400: #e0a9a9;
+  --color-navy-300: #f6d0d0;
+
+  --color-cream-50: #fcfaf5;
+  --color-cream-100: #f6f1e7;
+  --color-cream-200: #ece4d3;
+  --color-cream-300: #ddd2bc;
+
+  --color-amber-50: #fff8ea;
+  --color-amber-100: #fdefd2;
+  --color-amber-300: #f8c76a;
+  --color-amber-500: #f5a524;
+  --color-amber-600: #df8b0a;
+  --color-amber-700: #b06c06;
+
+  --color-ink: #1f1515;
+  --color-muted: #6e5c5c;
+
+  --color-ok: #2e7d5b;
+  --color-ok-soft: #e3f2ea;
+  --color-bad: #b83a3a;
+  --color-bad-soft: #f8e5e5;
+  --color-info: #355f96;
+  --color-info-soft: #e5edf7;
+
+  --font-sans: "Segoe UI", ui-sans-serif, system-ui, -apple-system, Roboto, "Noto Sans", "Noto Sans Devanagari", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "Cascadia Mono", "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --animate-fade-up: fade-up 0.45s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pulse-ring: pulse-ring 1.8s ease-out infinite;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(245, 165, 36, 0.55); }
+  80%, 100% { box-shadow: 0 0 0 12px rgba(245, 165, 36, 0); }
+}
+
+:root {
+  color-scheme: light;
+}
+
+html, body {
+  background: var(--color-cream-100);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+/* Small-caps eyebrow label used across the deck-like UI */
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.tabular { font-variant-numeric: tabular-nums; }
+
+:focus-visible {
+  outline: 2px solid var(--color-amber-500);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------------
+   Lavender panel surfaces.
+   Every "dark" surface in the UI is expressed with a bg-navy-* utility (panels, cards, the header
+   strip, chips, dark buttons, pills). These unlayered rules restyle them as the light lavender
+   gradient, and recolour the text *inside* them from white to dark ink so contrast stays readable.
+   Unlayered CSS beats Tailwind's @layer utilities, so no component markup had to change.
+   ------------------------------------------------------------------------------------------------ */
+:root {
+  --panel-grad: linear-gradient(200deg, #bcc0fb 0%, #d4d6fc 48%, #eceefe 100%);
+  --panel-base: #d7d8fc;
+  --panel-raised: rgba(255, 255, 255, 0.62);
+  --panel-ink: #1d1b33;
+  --panel-muted: #57546e;
+  --panel-line: rgba(72, 74, 160, 0.2);
+}
+
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700, .bg-navy-600, .bg-navy-950\/60) {
+  background-color: var(--panel-base);
+  background-image: var(--panel-grad);
+  color: var(--panel-ink);
+}
+
+/* Surfaces nested inside a panel read as frosted white cards on the gradient. */
+:is(.bg-navy-950, .bg-navy-900)
+  :is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700, .bg-navy-950\/60,
+      .bg-white\/5, .bg-white\/10, .bg-white\/\[0\.03\]) {
+  background-image: none;
+  background-color: var(--panel-raised);
+}
+/* Timeline progress fill inside a panel */
+:is(.bg-navy-950, .bg-navy-900) .bg-navy-600 {
+  background-image: none;
+  background-color: rgba(91, 95, 200, 0.35);
+}
+
+/* Text on panels: white → ink, pale captions → muted, bright amber → readable amber. */
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700, .bg-navy-950\/60)
+  :is(.text-cream-50, .text-cream-100, .text-white, .text-navy-950, .text-navy-900, .text-navy-800, .text-navy-700),
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700)
+  :is(.text-cream-50, .text-cream-100, .text-white) {
+  color: var(--panel-ink);
+}
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700, .bg-navy-950\/60)
+  :is(.text-navy-300, .text-navy-400, .text-navy-500),
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700):is(.text-navy-300, .text-navy-400, .text-navy-500) {
+  color: var(--panel-muted);
+}
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700, .bg-navy-950\/60)
+  :is(.text-amber-300, .text-amber-500),
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-850, .bg-navy-800, .bg-navy-700):is(.text-amber-300, .text-amber-500) {
+  color: var(--color-amber-700);
+}
+:is(.bg-navy-950, .bg-navy-900) .text-\[\#7fd3ac\] {
+  color: var(--color-ok);
+}
+
+/* Hairlines that were white-on-dark become soft indigo lines. */
+:is(.bg-navy-950, .bg-navy-900) :is(.border-white\/10, .border-white\/15, .border-white\/25),
+:is(.bg-navy-950, .bg-navy-900):is(.border-white\/10, .border-white\/15) {
+  border-color: var(--panel-line);
+}
+:is(.bg-navy-950, .bg-navy-900, .bg-navy-800):is(.ring-white\/5, .ring-white\/10),
+:is(.bg-navy-950, .bg-navy-900) :is(.ring-white\/5, .ring-white\/10) {
+  --tw-ring-color: var(--panel-line);
+}
